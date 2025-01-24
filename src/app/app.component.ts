@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
+import { count, increment, sum } from '@angular/fire/firestore';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { AnalyticsService } from './firebase/analytics.service';
+import { AuthenticationService } from './firebase/authentication.service';
 import { FirestoreService } from './firebase/firestore.service';
 import { Models } from './models/models';
-import { arrayRemove, average, count, deleteField, increment, sum } from '@angular/fire/firestore';
-import { AuthenticationService } from './firebase/authentication.service';
 import { UserService } from './services/user.service';
 import { WebService } from './services/web.service';
-import { AnalyticsService } from './firebase/analytics.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class AppComponent {
   private userService: UserService = inject(UserService);
   private webService: WebService = inject(WebService);
   private analyticsService: AnalyticsService = inject(AnalyticsService);
-  
+
   constructor() {
     // this.saveProduct();
     // this.updateProduct();
@@ -32,7 +32,7 @@ export class AppComponent {
     // this.consultar();
     // this.getAggregate();
     // this.registrarse()
-    // this.login() 
+    // this.login()
     // this.helloWorld();
 
   }
@@ -46,9 +46,9 @@ export class AppComponent {
     }
     const response = await this.webService.request('POST', url, 'helloWorld', data);
     console.log('response -> ', response);
-    
+
   }
-  
+
 
 
 
@@ -132,7 +132,7 @@ export class AppComponent {
 
   async getProduct() {
     console.log('getProduct()');
-    
+
     // const path = '/Products/58HZshMatIOqiNVXUd9o';
     const path = '/Products/lyhNDOPAb4jhOjfPzltd'
     // const doc = await this.firestoreService.getDocument<Models.Store.Item>(path);
@@ -162,7 +162,7 @@ export class AppComponent {
     const s = this.firestoreService.getDocumentsChanges<Models.Store.Item>(path).subscribe( changes => {
       console.log('Products -> ', changes);
       // console.log('pedidos -> ', changes);
-      
+
     });
     // s.unsubscribe();
   }
@@ -181,8 +181,8 @@ export class AppComponent {
     // q = [ ['user.id', '==', '8njXZ7n0GuhJyi1ysXO9']];
 
     const extras: Models.Firebase.extrasQuery = {
-      // orderParam: 'price', 
-      // directionSort: 'desc', 
+      // orderParam: 'price',
+      // directionSort: 'desc',
       // limit: 2,
       // group: true
     }
@@ -212,15 +212,15 @@ export class AppComponent {
     };
     let q: Models.Firebase.whereQuery[] = [[]]
     const extras: Models.Firebase.extrasQuery = {
-      // orderParam: 'price', 
-      // directionSort: 'desc', 
+      // orderParam: 'price',
+      // directionSort: 'desc',
       // limit: 2,
       group: true
     }
 
     const values = await this.firestoreService.getAggregations(path, aggregate, q, extras);
     console.log('values -> ', values);
-    
+
   }
 
 }

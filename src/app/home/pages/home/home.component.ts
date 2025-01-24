@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Models } from 'src/app/models/models';
 import { WebService } from 'src/app/services/web.service';
-import { FirestoreService } from '../../../firebase/firestore.service';
 
 
 @Component({
@@ -26,12 +25,12 @@ export class HomeComponent  implements OnInit {
     // const res = await this.firestoreService.getDocument<{name: string}>('/Users/r0VfJPyI1gOE5ithy0rne0HVgn32')
     // if (res.exists()) {
     //   const user = res.data();
-    //   console.log('res -> ', user.name); 
+    //   console.log('res -> ', user.name);
     // }
 
     // this.firestoreService.getDocumentChanges<{name: string}>('/Users/r0VfJPyI1gOE5ithy0rne0HVgn32').subscribe( res => {
-    //   const user = res  
-    //   console.log('getDocumentChanges -> ', user.name); 
+    //   const user = res
+    //   console.log('getDocumentChanges -> ', user.name);
     // });
 
     // // const querys: Models.Firebase.whereQuery[] = [
@@ -46,9 +45,9 @@ export class HomeComponent  implements OnInit {
 
     // querys[0][0]
 
-    // // [''], ['', ''] 
+    // // [''], ['', '']
 
-  
+
     // this.firestoreService.getCollectionQuery('Users', querys, {limit: 2}).subscribe( res => {
     //   console.log('getCollectionQuery -> ', res);
     // });
@@ -61,7 +60,7 @@ export class HomeComponent  implements OnInit {
 
     // const docs = await this.firestoreService.getCollection<{name: string}>('Users');
     // docs.forEach( doc => {
-      
+
     // });
 
 
@@ -88,7 +87,7 @@ export class HomeComponent  implements OnInit {
       title: 'foo',
       body: 'bar',
       userId: 1,
-      
+
     }
     const res = await this.webService.request<Models.Home.ArticleI>('POST', url, 'posts', data);
     console.log('data post -> ', res);
@@ -98,7 +97,7 @@ export class HomeComponent  implements OnInit {
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter HomeComponent');
-    
+
   }
 
   ionViewDidLeave() {
@@ -106,7 +105,7 @@ export class HomeComponent  implements OnInit {
 
   }
 
-  
+
 
 
 
